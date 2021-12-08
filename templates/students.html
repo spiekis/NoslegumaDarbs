@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>All students</title>
+{% endblock %}
+
+{% block content %}
+<ul>
+<h1> Students list:</h1>
+{% if students %}
+    {% for student in students %}
+
+    <a href="{% url 'get-student' student_id=student.id %}">
+        <strong>Student name: </strong>{{ student.name }}<br>
+        <strong>Avarage grade: </strong>{{ student.average_grade }}<br>
+           <br><br>
+
+        </a>
+    </li>
+    {% endfor %}
+
+{% else %}
+    <p>Don't have any students yet</p>
+{% endif %}
+
+</ul>
+
+<form action="/student/add" method="get">
+    <input type="submit" value="Add new student">
+</form>
+
+
+
+{% endblock %}

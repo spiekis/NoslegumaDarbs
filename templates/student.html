@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Student view</title>
+{% endblock %}
+
+{% block content %}
+
+    <strong>{{ student.name }}</strong> <br>
+    ID: {{ student.id}} <br>
+    Grades: {{ student.grades }}
+
+<form action="/" method="get">
+    <input type="submit" value="View students">
+</form>
+
+{% endblock %}
