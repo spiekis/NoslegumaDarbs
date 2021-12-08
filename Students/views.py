@@ -28,17 +28,18 @@ def add_student(request):
     form = CreateStudentForm(request.POST or None)
 
     if request.method == 'POST':
-        #grades_tmp = []
+
         if form.is_valid():
-            #grades_tmp = []
-            #grades_tmp = form.cleaned_data['grades'].split(',')
-            grades_tmp2=grades_tmp.split(',')
-            #avarage_tmp=sum(grades_tmp) / len(grades_tmp)
-            print(grades_tmp, avarage_tmp)
+
+            grades_str = form.cleaned_data['grades']
+
+            grades_int_list = list(map(int, grades_str.split(',')))
+            avarage=sum(grades_int_list) / len(grades_int_list)
+            print(avarage, grades_int_list)
             student = StudentModel(
                 name=form.cleaned_data['name'],
                 grades=form.cleaned_data['grades'],
-                average_grade=3,
+                average_grade=avarage,
             )
 
             student.save()
